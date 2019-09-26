@@ -35,7 +35,7 @@ public class TMBot extends TelegramLongPollingBot implements Bot {
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
         if (message.hasText() &&
-                CommandController.Instance.isCommand(message.getText())) {
+                CommandController.Instance.isCommand(update)) {
             CommandController.Instance.execute(update);
         } else {
             controller.executeAsync(update);

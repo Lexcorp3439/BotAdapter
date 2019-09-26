@@ -33,8 +33,9 @@ public class BotRunner {
         return this;
     }
 
-    public void setController(Controller controller) {
+    public BotRunner setController(Controller controller) {
         this.controller = controller;
+        return this;
     }
 
     public BotRunner registerCommand(Command command) {

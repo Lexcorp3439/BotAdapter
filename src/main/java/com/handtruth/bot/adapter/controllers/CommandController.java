@@ -17,7 +17,8 @@ public enum  CommandController {
     }
 
     public boolean isCommand(Update update) {
-        return isCommand(update.getMessage().getText());
+        String code  = update.getMessage().getText();
+        return isCommand(code.split(" ")[0]);
     }
 
     public void execute(Update update) {
