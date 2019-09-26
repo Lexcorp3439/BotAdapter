@@ -1,8 +1,8 @@
 package com.handtruth.bot.adapter;
 
 public class Main {
-    private static final String PROXY_PORT = "1080";
-    private static final String PROXY_ADDRESS = "178.197.248.213";
+    private static final String PROXY_PORT = "34332";
+    private static final String PROXY_ADDRESS = "109.196.82.214";
 
     public static void main(String[] args) {
         BotRunner runner = new BotRunner();
