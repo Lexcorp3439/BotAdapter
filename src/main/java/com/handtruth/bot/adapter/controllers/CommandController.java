@@ -2,6 +2,7 @@ package com.handtruth.bot.adapter.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -10,7 +11,7 @@ import com.handtruth.bot.adapter.utils.Command;
 public enum  CommandController {
     Instance;
 
-    private Map<String, Command> commands = new HashMap<>();
+    private Map<String, Command> commands = new ConcurrentHashMap<>();
 
     public boolean isCommand(String code) {
         return commands.containsKey(code);
@@ -22,7 +23,10 @@ public enum  CommandController {
     }
 
     public void execute(Update update) {
-        commands.get(update.getMessage().getText()).execute(update);
+        Thread thread = new Thread(() -> {
+            commands.get(update.getMessage().getText()).execute(update);
+        });
+        thread.start();
     }
 
     public void register(Command command) {

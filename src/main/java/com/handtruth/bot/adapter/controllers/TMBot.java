@@ -25,10 +25,14 @@ public class TMBot extends TelegramLongPollingBot implements Bot {
 
     //    private String smile_emoji = EmojiParser.parseToUnicode("\uD83D\uDE0B");
     private volatile Controller controller = null;
+    private Runnable init = null;
 
 
     private TMBot() {
         super();
+        if (init != null) {
+            init.run();
+        }
     }
 
     @Override
@@ -201,6 +205,10 @@ public class TMBot extends TelegramLongPollingBot implements Bot {
 
     @Override
     public synchronized void setController(Controller controller) {
+        this.controller = controller;
+    }
 
+    public synchronized void setInit(Runnable runnable) {
+        this.init = runnable;
     }
 }
