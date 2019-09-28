@@ -12,7 +12,7 @@ import com.handtruth.bot.adapter.utils.Command;
 import com.handtruth.bot.adapter.controllers.TMBot;
 
 public class BotRunner {
-    private Bot bot = TMBot.Instance;
+    private TMBot bot = TMBot.Instance;
     private String username;
     private String token;
     private Controller controller;
@@ -58,7 +58,7 @@ public class BotRunner {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot((TMBot) bot);
-            BotLogger.debug(TAG, "SUCCESS");
+            System.out.println(TAG +  "SUCCESS");
 
         } catch (TelegramApiException e) {
             e.printStackTrace();
@@ -74,7 +74,7 @@ public class BotRunner {
         System.getProperties().put(SET_KEY, SET_VALUE);
         System.getProperties().put(HOST_KEY, address);
         System.getProperties().put(PORT_KEY, port);
-        BotLogger.debug(TAG, "Proxy connect");
+        System.out.println(TAG + "Proxy connect");
         return this;
     }
 
