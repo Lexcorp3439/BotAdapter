@@ -1,5 +1,7 @@
 package com.handtruth.bot.adapter;
 
+import java.util.Timer;
+
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -10,6 +12,7 @@ import com.handtruth.bot.adapter.controllers.Controller;
 import com.handtruth.bot.adapter.utils.Bot;
 import com.handtruth.bot.adapter.utils.Command;
 import com.handtruth.bot.adapter.controllers.TMBot;
+import com.handtruth.bot.adapter.utils.timers.BotTimerTask;
 
 public class BotRunner {
     private TMBot bot = TMBot.Instance;
@@ -25,6 +28,7 @@ public class BotRunner {
     }
 
     public BotRunner() {
+
     }
 
     public BotRunner authorization(String username, String token) {
@@ -57,7 +61,7 @@ public class BotRunner {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
-            telegramBotsApi.registerBot((TMBot) bot);
+            telegramBotsApi.registerBot(bot);
             System.out.println(TAG +  "SUCCESS");
 
         } catch (TelegramApiException e) {
